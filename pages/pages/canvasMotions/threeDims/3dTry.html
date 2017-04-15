@@ -1,0 +1,29 @@
+﻿<html>
+	<head>
+		<title> 3d Draw </title>
+		<link rel="stylesheet" type="text/css" href="3dStyle.css"/>
+	</head>
+	<body onload="main()">
+		<center>
+		<div class="title">
+			<a href="../../../index.html"> <img src="backArrow.png" class="backArrow"/></a>
+			3D Motion 
+		</div> </br>
+		<p class="directions">
+			x0 = <input type="text" id="inX" value="450" class="input" onblur="main()"/>
+			y0 = <input type="text" id="inY" value="250" class="input" onblur="main()"/>
+			-----
+			Point: x =  <input type="text" id="pointX" value="200" class="input" />
+			Point: y =  <input type="text" id="pointY" value="200" class="input" />
+						<input type="button" value="Draw point"  class="button" onclick="drawAPoint(1)"/>
+						<input type="button" value="Draw Dashed" class="button" onclick="drawAPoint(2)"/>
+			
+		</p>
+		<canvas id="canvas" width="900px" height="500px"> There must be a canvas. PLease get a modern browser </canvas>
+		<p> NOT WORKING STATE! </p>
+	
+	
+	
+	</body>
+	<script src="script.js">  </script>
+</html>

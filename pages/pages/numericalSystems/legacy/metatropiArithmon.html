@@ -1,0 +1,664 @@
+﻿<html> <head> <title>Μετατροπή Αριθμών - Dimitris Pl</title> <head>
+<!-- Dimitris Pl, Dimitris Pliakos -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<link rel="icon" type="image/png" href="01.ico">/
+<link rel="stylesheet" href="metArithmonStyle.css" type="text/css"/>
+
+
+<script type="text/javascript">
+
+function stopRKey(evt) {
+  var evt = (evt) ? evt : ((event) ? event : null);
+  var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null);
+  if ((evt.keyCode == 13) && (node.type=="text"))  {return false;}
+}
+
+document.onkeypress = stopRKey;
+
+</script>
+
+<script>
+//document.getElementById("outputTxt").innerHTML=" ";
+
+var mthd1Execute = function() {
+
+var dNumber = [];
+var supNumber = [];
+var deikt = 0;
+var  deikths = function () {
+var deikt2 = document.mthd1.mthd1InputType.value;
+
+switch (deikt2)
+{
+case "2": deikt=2;
+break;
+
+case "8": deikt = 8;
+break;
+
+case "10": deikt = 10;
+break;
+
+case "16": deikt = 16;
+break;
+
+default: alert("Επιλέξτε πρώτα τον τύπο του αριθμού.");
+break;
+}
+
+}
+
+deikths();
+
+var n = document.mthd1.mthd1Numb.value;
+var fin = 0;
+var final = 0;
+var tel = [];
+var final, sum = 0;
+
+
+n = n.toUpperCase();
+
+if (deikt === 2) { 
+	for (var i = 0; i < n.length; i++) {
+		var nCheck = n[i];
+				if (nCheck != 1 && nCheck != 0) {
+			document.getElementById("outputTxt").innerHTML= ("Μη έγκυρη είσοδος, ένας δυαδικός αριθμος μπορεί να πάρει μονο τις τιμές 0 και 1");
+//			return alert("Μη έγκυρη είσοδος, ένας δυαδικός αριθμος μπορεί να πάρει μονο τις τιμές 0 και 1");
+		}
+	}
+} 
+
+if (deikt === 8) { 
+	for (var i = 0; i < n.length; i++) {
+		var nCheck = n[i];
+		if (nCheck != 0 && nCheck != 1 && nCheck != 2 && nCheck != 3 && nCheck != 4 && nCheck != 5 && nCheck != 6 && nCheck != 7) {
+			document.getElementById("outputTxt").innerHTML= ("Μη έγκυρη είσοδος");
+			return alert("Μη έγκυρη είσοδος, ένας οκταδικός αριθμος μπορεί να πάρει τιμές από 0 ως 7");
+		}
+	}
+}
+if (deikt === 10) { 
+	for (var i = 0; i < n.length; i++) {
+		var nCheck = n[i];
+		if (nCheck != 0 && nCheck != 1 && nCheck != 2 && nCheck != 3 && nCheck != 4 && nCheck != 5 && nCheck != 6 && nCheck != 7 && nCheck != 8 && nCheck != 9) {
+			document.getElementById("outputTxt").innerHTML= ("Μη έγκυρη είσοδος");
+			return alert("Μη έγκυρη είσοδος, ένας δεκαδικός αριθμος μπορεί να πάρει τιμές από 0 ως 9");
+		}
+	}
+}
+
+if (deikt === 16) { 
+	for (var i = 0; i < n.length; i++) {
+		var nCheck = n[i];
+		if (nCheck != 0 && nCheck != 1 && nCheck != 2 && nCheck != 3 && nCheck != 4 && nCheck != 5 && nCheck != 6 && nCheck != 7 && nCheck != 8 && nCheck != 9 && nCheck !== "A" && nCheck !== "B" && nCheck !== "C" && nCheck !== "D" && nCheck !== "E" && nCheck !== "F") {
+			document.getElementById("outputTxt").innerHTML= ("Μη έγκυρη είσοδος");
+			return alert("Μη έγκυρη είσοδος, ένας δεκαεξαδικός αριθμος μπορεί να πάρει τιμές 0 ως 9 και A ως F, από την αγγλική αλφάβητο.");
+		}
+	}
+}
+
+
+document.getElementById("outputTxt").innerHTML= ('('+n+')<sub>' + deikt + '</sub>=');
+document.getElementById("outputTxt").innerHTML+= ("</br>");
+
+
+
+for (var sup=(n.length - 1);sup>=0;sup--) {
+supNumber.push(sup);
+}
+
+for (var a=0;a<(n.length);a++) {
+	dNumber.push(n[a]);
+}
+
+for (var fLine=0;fLine<n.length;fLine++){
+	document.getElementById("outputTxt").innerHTML+=(dNumber[fLine]);
+	document.getElementById("outputTxt").innerHTML+=('*'+ deikt);
+	document.getElementById("outputTxt").innerHTML+=('<sup>'+ supNumber[fLine] +' </sup>');
+	document.getElementById("outputTxt").innerHTML+=(" + ");
+}
+document.getElementById("outputTxt").innerHTML+=(" = </br>");
+
+
+
+for (var hexN=0;hexN<dNumber.length;hexN++) {
+
+	
+	switch (dNumber[hexN])
+	{
+
+	case "A" : dNumber[hexN] = 10;
+	break;
+	
+	case "B" : dNumber[hexN] = 11;
+	break;
+
+	case "C" : dNumber[hexN] = 12;
+	break;
+
+	case"D" : dNumber[hexN] = 13;
+	break;
+
+	case "E" : dNumber[hexN] = 14;
+	break;
+	
+	case "F": dNumber[hexN] = 15;
+	break;
+
+	default: dNumber[hexN] = dNumber[hexN];
+	break;
+	}
+}
+
+
+
+for (var e=0;e<(n.length );e++) {
+	document.getElementById("outputTxt").innerHTML+=(dNumber[e]);
+	document.getElementById("outputTxt").innerHTML+=('*' + Math.pow(deikt,supNumber[e]) + ' + ')
+	
+}
+document.getElementById("outputTxt").innerHTML+=(" = </br>");
+
+
+for (var i=0;i<(n.length);i++) {
+	var o = function () {
+	return dNumber[i] * Math.pow(deikt,supNumber[i]);
+}
+/*console.log(o());*/
+document.getElementById("outputTxt").innerHTML+=(o());
+document.getElementById("outputTxt").innerHTML+=(" + ");
+tel.push(o());
+}
+
+
+
+document.getElementById("outputTxt").innerHTML+=("= </br>");
+
+
+
+for (f=0;f<n.length;f++) {
+	sum = sum + tel[f];
+}
+
+
+
+document.getElementById("outputTxt").innerHTML+=(sum);
+document.getElementById("outputTxt").innerHTML+=("</br>");
+document.getElementById("outputTxt").innerHTML+=('('+n+')'+'<sub>'+deikt+'</sub>'+' = '+ '('+sum+')<sub>10</sub>');
+}
+
+
+</script>
+
+<script>
+
+var mthd2Execute = function() {
+
+var numbType = document.mthd2.mthd2InputType.value;
+var num = document.mthd2.mthd2Numb.value;
+var num = num.toString();
+num = num.toUpperCase();
+var fin = [];
+
+var typeCheck = function() {
+if (numbType === "--") { alert("Επιλέξτε πρώτα τον τύπο του αριθμού"); startType = false; } else { startType = true ; } 
+}
+
+typeCheck();
+
+
+
+
+if (numbType === "8") { 
+	for (var i = 0; i < num.length; i++) {
+		var nCheck = num[i];
+		if (nCheck != 0 && nCheck != 1 && nCheck != 2 && nCheck != 3 && nCheck != 4 && nCheck != 5 && nCheck != 6 && nCheck != 7) {
+			document.getElementById("outputTxt").innerHTML= ("Μη έγκυρη είσοδος");
+			return alert(" Μη έγκυρη είσοδος, ένας οκταδικός αριθμος μπορεί να πάρει τιμές από 0 ως 7");
+		}
+	}
+}
+if (numbType === "10") { 
+	for (var i = 0; i < num.length; i++) {
+		var nCheck = num[i];
+		if (nCheck != 0 && nCheck != 1 && nCheck != 2 && nCheck != 3 && nCheck != 4 && nCheck != 5 && nCheck != 6 && nCheck != 7 && nCheck != 8 && nCheck != 9) {
+			document.getElementById("outputTxt").innerHTML= ("Μη έγκυρη είσοδος");
+			return alert(" Μη έγκυρη είσοδος, ένας δεκαδικός αριθμος μπορεί να πάρει μονο τιμές από 0 ως 9");
+		}
+	}
+}
+
+if (numbType === "16") { 
+	for (var i = 0; i < num.length; i++) {
+		var nCheck = num[i];
+		if (nCheck != 0 && nCheck != 1 && nCheck != 2 && nCheck != 3 && nCheck != 4 && nCheck != 5 && nCheck != 6 && nCheck != 7 && nCheck != 8 && nCheck != 9 && nCheck !== "A" && nCheck !== "B" && nCheck !== "C" && nCheck !== "D" && nCheck !== "E" && nCheck !== "F") {
+			document.getElementById("outputTxt").innerHTML= ("Μη έγκυρη είσοδος");
+			return alert("Μη έγκυρη είσοδος, ένας δυαδικός αριθμος μπορεί να πάρει τιμές από 0 ως 9 και 'Α' ως 'F', από την αγγλική αλφάβητο.");
+		}
+	}
+}
+
+
+
+
+var octToBin = function() {
+
+var digits = [];
+var binaryNum = ["000","001", "010", "011", "100", "101", "110", "111"];
+
+document.getElementById("outputTxt").innerHTML= (" ");
+
+for (var i=0; i<num.length; i++) { digits.push(num[i]);}
+
+for (var i=0; i<num.length; i++) { 
+	fin.push(binaryNum [digits[i]]);
+	document.getElementById("outputTxt").innerHTML+=(digits[i] + " = " + binaryNum [digits[i]] + "<br>");
+
+}
+
+document.getElementById("outputTxt").innerHTML+=("<br>" + "(" + num + ")<sub>8</sub> = (" + fin + ")<sub>2</sub>" );
+
+}
+
+
+/*---------------------------------*/
+
+var decToBin = function() {
+
+num = Number(num);
+num2 = num;
+var quotient;
+var remainder;
+var binaryNum = [];
+var final = "lala"
+
+
+document.getElementById("outputTxt").innerHTML = (" ");
+
+do {
+	quotient = (num / 2);
+	remainder = (num % 2);
+	if (remainder === 1) { quotient = (quotient - 0.5); }
+	document.getElementById("outputTxt").innerHTML +=(num + " : 2 = " + quotient + " remainder : " + remainder + "<br>");
+	binaryNum.push(remainder);
+	num = quotient;
+} while ( quotient > 0 );
+
+binaryNumb = binaryNum.reverse();
+binaryNumb = binaryNumb.toString();
+
+document.getElementById("outputTxt").innerHTML+= ("<br>" + "(" + num2 + ")<sub>10</sub> = (" + binaryNumb + ") <sub>2</sub>");
+
+}
+
+
+/* -------------------------- */
+
+var hexTobin = function() {
+
+var digits = [];
+var digits2 = [];
+var binaryNum = [];
+var binaryNum = ["0000","0001", "0010", "0011", "0100", "0101", "0110", "0111", "1000", "1001", "1010", "1011", "1100", "1101", "1110", "1111"];
+num = num.toUpperCase();
+var fin = [];
+
+
+for (var i=0; i<num.length; i++) { digits.push(num[i]); digits2.push(num[i]);}
+
+for (var i=0; i<digits.length; i++) {
+	var numConv = digits[i];
+	
+	switch (numConv) {
+	case "A": digits[i] = "10"; 
+	break;
+	case "B": digits[i] = "11"; 
+	break;
+	case "C": digits[i] = "12"; 
+	break;
+	case "D": digits[i] = "13"; 
+	break;
+	case "E": digits[i] = "14"; 
+	break;
+	case "F": digits[i] = "15"; 
+	break;
+	default:  ;
+	break;
+
+	
+}}
+
+document.getElementById("outputTxt").innerHTML= ("");
+
+for (var i=0; i<num.length; i++) { 
+	fin.push(binaryNum [digits[i]]);
+	document.getElementById("outputTxt").innerHTML+=(digits2[i] + " = " + binaryNum [digits[i]] + "<br>");
+}
+document.getElementById("outputTxt").innerHTML+=("<br>" + "(" + num + ")<sub>16</sub> = (" + fin + ")<sub>2</sub>");
+
+}
+
+
+
+
+
+if (startType && numbType === "8")  { octToBin(); }
+if (startType && numbType === "10") { decToBin(); }
+if (startType && numbType === "16") { hexTobin(); }
+
+}
+</script>
+
+<script>  
+
+var mthd3Execute = function() {
+/* console.log("Progress Check - function exe startd with the button"); */
+
+var fnu = document.mthd3.mthd2Numb1.value;
+var snu = document.mthd3.mthd2Numb2.value;
+var nuToDig = [];
+var final = [];
+var final2 =[];
+
+
+
+if (fnu != "") { 
+	for (var i = 0; i < fnu.length; i++) {
+		var nCheck = fnu[i];
+				if (nCheck != 1 && nCheck != 0) {
+			document.getElementById("outputTxt").innerHTML= ("Wrong Input");
+			return alert("Wrong input, a binary nnumber can take only values from 0 to 1");
+		}
+	}
+} 
+
+if (snu != "") { 
+	for (var i = 0; i < snu.length; i++) {
+		var nCheck = snu[i];
+				if (nCheck != 1 && nCheck != 0) {
+			document.getElementById("outputTxt").innerHTML= ("Wrong Input");
+			return alert("Wrong input, a binary nnumber can take only values from 0 to 1");
+		}
+	}
+}
+
+
+fnu = Number(fnu); snu = Number(snu);
+
+var addit = fnu + snu ; addit = addit.toString();
+
+/*console.log("Progress Check - addit = " + addit); */
+
+for (var i=0; i<addit.length; i++) {
+	nuToDig.push(addit[i]);
+}
+
+/*console.log("Progress Check - nuToDig: " + nuToDig + " - String"); */
+
+
+for (var ad = 0; ad <= nuToDig.length; ad++) {
+	final.push(0);
+}
+
+/*console.log("Progress Check - final: " + final + " - numbers");*/
+
+
+for (var a = nuToDig.length-1; a >= 0; a--)  {
+	var exam = nuToDig[a];
+
+/*	console.log("fast check - Start - exam: " + exam + ", At point: " + (a + 1) );*/
+	
+	switch(exam) {
+
+	case "0" : final[a + 1] += 0;
+	break;
+	
+	case "1" : final[a + 1] += 1; /* if (final[a + 1] === 2) { console.log (" 2 should appear at " + (a + 1)); final[a + 1] = 0; final[a] = 1;  } */
+	break;
+
+	case "2" : final[a + 1] += 0; final[a] += 1; /*  if ( final[a] = 2) { final[a] = 0; final[a - 1] += 1}; */
+	break;
+
+	case "3" : final[a + 1] += 1; final[a] += 1; /* if ( final[a] = 2) { final[a] = 0; final[a - 1] += 1}; */
+	break;
+
+	default : final.push("Error at " + a);
+	break;
+	}
+
+/*	console.log("fast check - End - final: " + final + ", At point: " + (a + 1));
+	console.log(".");*/
+}
+
+/* console.log("Progress Check - final: " + final); */
+
+
+for (var dio = final.length; dio >= 0; dio--) {
+	
+	if (final[dio] === 2) {
+		final[dio] = 0; final[dio-1] += 1;
+	} else if (final[dio] === 3) {
+		final[dio] = 1; final[dio-1] += 1;
+	}
+}
+
+
+
+
+if (final[0] === 0) {
+	for (var mod = 1; mod<=final.length; mod++) {
+		final2.push(final[mod]);
+	}
+} else {
+	for (var mod = 0; mod<=final.length; mod++) {
+		final2.push(final[mod]);
+	}
+}
+
+/* console.log("final2: " + final2); */
+
+var final3 = final2.toString();
+
+document.getElementById("outputTxt").innerHTML=("<table class=tblBin><tr><td></td><td>" + fnu + " </td></tr><tr><td>+</td><td>" + snu + "</td></tr><tr><td colspan=2><hr>")
+document.getElementById("outputTxt").innerHTML+= final2.join("");
+document.getElementById("outputTxt").innerHTML+=("</td></tr></table>");
+document.getElementById("outputTxt").innerHTML+=("<br><br>");
+document.getElementById("outputTxt").innerHTML+=("(" + fnu + ")<sub>2</sub> + (" + snu + ")<sub>2</sub> = (" + final3 + ")<sub>2</sub>");
+
+} 
+
+
+</script>
+
+<script>
+
+var lolo = function(){
+	if (document.getElementById("divMenu").style.display != "inline-block") {
+		document.getElementById("divMenu").style.display="inline-block";
+	} else {
+		document.getElementById("divMenu").style.display="none";
+	}
+}
+
+var clearOutput = function() {
+	document.getElementById("outputTxt").innerHTML="";
+}
+</script>
+</head>
+
+<body> <div class="first" align="center"> <div class="main" align="left">
+
+<center> <div class="genTitleBack">
+	<a href="../../index.html"><img src="img/backArrow.png" style="width: 80px; height: auto; vertical-align: middle;"/></a>
+	Μετατροπή Αριθμών
+</div> </center>
+
+<!-- End of title -->
+<table class="back" border="0" cellspacing="10px">
+
+<tr> <td height="20px"> </td> </tr>
+<tr>
+
+<!-- Sart of input -->
+<td id="mainTd">
+<div class="input">
+
+
+<br>
+<form name="mthd1" >
+<span class="inputSecTitle">Μετατροπή σε δεκαδικό</span> <br><br>
+<select name="mthd1InputType">
+<option value="--">Επιλογή τύπου αριθμού:</option>
+<option value="2">Δυαδικός</option>
+<option value="8">Οκταδικός</option>
+<option value="10">Δεκαδικός</option>
+<option value="16">Δεκαεξαδικός</option>
+</select>
+<input type="text" name="mthd1Numb" class="methdNumb" placeholder="Γράψτε τον αριθμό" id="txtInput1">
+<input type="button" value="Μετατροπή" class="inputButton" onclick="mthd1Execute()" id="btnInput1">
+<input type="reset" value="X" class="inputButton" id="btnInput2">
+</form>
+
+<!-- End. to Decimal Convertation -->
+<br><br><br>
+<form name="mthd2">
+<span class="inputSecTitle">Μετατροπή σε δυαδικό</span> <br><br>
+<select name="mthd2InputType">
+<option value="--">Επιλογή Τύπου αριθμού:</option>
+<option value="8">Οκταδικός</option>
+<option value="10">Δεκαδικός</option>
+<option value="16">Δεκαεξαδικός</option>
+</select>
+<input type="text" name="mthd2Numb" class="methdNumb" placeholder="Γράψτε τον αριθμό" id="txtInput2">
+<input type="button" value="Μετατροπή" class="inputButton" onclick="mthd2Execute()" id="btnInput3">
+<input type="reset" value="X" class="inputButton" id="btnInput4">
+</form>
+
+<!-- End. to Binary -->
+<br><br><br>
+
+<span class="inputSecTitle">Πρόσθεση Δυαδικού</span> <br><br>
+<form name="mthd3">
+<input type="text" name="mthd2Numb1" class="methdNumb" placeholder="Ο πρώτος δυαδικός" id="txtInput3"> +
+<input type="text" name="mthd2Numb2" class="methdNumb" placeholder="Ο δεύτερος δυαδικός" id="txtInput4">
+<input type="button" value="Πρόσθεση" class="inputButton" onclick="mthd3Execute()" id="btnInput5">
+<input type="reset" value="X" class="inputButton" id="btnInput6">
+</form>
+</div>
+</td>
+<!-- End of Input -->
+
+<!-- Start Output -->
+<td class="output" id="mainTd">
+<button class="InputButton" style="float: right;" id="btnInput7" onclick="clearOutput()">Σβήσε</button>
+<br>
+<center><div class="outputText" id="outputTxt"></div></center>
+
+</td>
+<!-- End of output -->
+</tr>
+</table>
+
+<style>
+.tblMenu { width: 100%; height: 75px; }
+.divMenu { width: 300px; height: 65px; display: none; background-image: url('img/inputBack.png'); border-radius: 10px;}
+.imgMenu { width: 70px; height: 70px; float: right; bottom: 0px; }
+.imgMenu:active { width: 65px; height: 65px;}
+.tblMenu2 td { width: 30%; heigth: 90%; text-align: center;}
+.imgTxtColor { width: 60%; height: 25px; }
+.tdTxtColor { vertical-align: top; }
+.txtColorPicker { width: 15px; height: 15px; display: inline-block; border: 1px solid red; }
+#txtClrBlack { background-color: black; }
+#txtClrWhite { background-Color: white; }
+.imgInfo { width: 30px; height: 35px; margin-top: 10px;}
+.infoText { color: white; font-size: 19px;}
+.divInfo { width: 80%; height: 200px; background-image: url('img/inputBack.png'); background-size: 100% 100%; border-radius: 10px; text-align: center; display: none;}
+</style>
+<script>
+
+var txtClrBlack = function() {
+document.getElementById("txtInput1").style.backgroundColor = "transparent"; document.getElementById("txtInput1").style.color = "white";
+document.getElementById("txtInput2").style.backgroundColor = "transparent"; document.getElementById("txtInput2").style.color = "white";
+document.getElementById("txtInput3").style.backgroundColor = "transparent"; document.getElementById("txtInput3").style.color = "white";
+document.getElementById("txtInput4").style.backgroundColor = "transparent"; document.getElementById("txtInput4").style.color = "white";
+document.getElementById("btnInput1").style.backgroundColor = "transparent"; document.getElementById("btnInput1").style.color = "white";
+document.getElementById("btnInput2").style.backgroundColor = "transparent"; document.getElementById("btnInput2").style.color = "white";
+document.getElementById("btnInput3").style.backgroundColor = "transparent"; document.getElementById("btnInput3").style.color = "white";
+document.getElementById("btnInput4").style.backgroundColor = "transparent"; document.getElementById("btnInput4").style.color = "white";
+document.getElementById("btnInput5").style.backgroundColor = "transparent"; document.getElementById("btnInput5").style.color = "white";
+document.getElementById("btnInput6").style.backgroundColor = "transparent"; document.getElementById("btnInput6").style.color = "white";
+document.getElementById("btnInput7").style.backgroundColor = "transparent"; document.getElementById("btnInput7").style.color = "white";
+}
+
+var txtClrWhite = function() { 
+document.getElementById("txtInput1").style.backgroundColor = "white"; document.getElementById("txtInput1").style.color = "black";
+document.getElementById("txtInput2").style.backgroundColor = "white"; document.getElementById("txtInput2").style.color = "black"; 
+document.getElementById("txtInput3").style.backgroundColor = "white"; document.getElementById("txtInput3").style.color = "black"; 
+document.getElementById("txtInput4").style.backgroundColor = "white"; document.getElementById("txtInput4").style.color = "black"; 
+document.getElementById("btnInput1").style.backgroundColor = "white"; document.getElementById("btnInput1").style.color = "black";
+document.getElementById("btnInput2").style.backgroundColor = "white"; document.getElementById("btnInput2").style.color = "black";
+document.getElementById("btnInput3").style.backgroundColor = "white"; document.getElementById("btnInput3").style.color = "black";
+document.getElementById("btnInput4").style.backgroundColor = "white"; document.getElementById("btnInput4").style.color = "black";
+document.getElementById("btnInput5").style.backgroundColor = "white"; document.getElementById("btnInput5").style.color = "black";
+document.getElementById("btnInput6").style.backgroundColor = "white"; document.getElementById("btnInput6").style.color = "black";
+document.getElementById("btnInput7").style.backgroundColor = "white"; document.getElementById("btnInput7").style.color = "black";
+}
+
+var txtSize = function() {
+document.getElementById("outputTxt").style.fontSize = document.frmTxtSize.txtSize.value + "px";
+if (document.getElementById("outputTxt").innerHTML != "") { 
+}else { document.getElementById("outputTxt").innerHTML="Sample Text";}
+}
+
+var InfoOn = function() {
+	if (document.getElementById("divInfo").style.display != "inline-block") {
+		document.getElementById("divInfo").style.display="inline-block";
+	} else {
+		document.getElementById("divInfo").style.display="none";
+	}
+}
+
+</script>
+
+
+<table border="0" class="tblMenu">
+<tr> <td width="500px"><p style="color: white; font-size: 25px; font-family: Arial;">Dimitris Pl <br>  </p></td>
+<td align="right" height="70px"> 
+<div class="divMenu" id="divMenu" align="center" valign="middle">
+
+<table width="90%" height="90%" border="0px" class="tblMenu2"><tr> 
+<td class="tdTxtColor"> <img src="img/txtColor.jpg" class="imgTxtColor"><br> <div class="txtColorPicker" id="txtClrWhite" onclick="txtClrWhite()"></div><div class="txtColorPicker" id="TxtClrBlack" onclick="txtClrBlack()"></div></td> 
+<td class="tdTxtColor"> <img Src="img/txtSize.jpg"  class="imgTxtColor" ><br> <form name="frmTxtSize"><select name="txtSize"> <option value="16" onclick="txtSize()">normal</option><option value="19" onclick="txtSize()">19</option><option value="22" onclick="txtSize()">22</option></select></form></td> 
+</tr></table>
+</div>
+</td>
+
+<td style="width: 70px;">
+<img src="img/menu.png" class="imgMenu" onclick="lolo()"> 
+</td></tr>
+</table>
+
+
+</div> </div> </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,100 @@
+body {
+	padding: 0px;
+	width: 98%;
+	height: 100%;
+	background-image: url('./../img/arrowBG.jpg'); 
+	background-size: 120%;
+	font-family: Arial;
+}
+
+
+.header {
+	display: block;
+	width: 100%;
+/* 	background-color: yellow;*/
+	height: 80px;
+	vertical-align: middle;
+/*	border: 1px dashed red; */	
+}
+
+.title {
+	display: inline-block;
+	position: relative;
+	width: 35%;
+	height: 100%;
+	border-right: 1px solid black;
+	vertical-align: bottom;
+	color: white;
+	font-size: 50px;
+}
+
+.menu {
+	display: inline-block;
+	position: relative;
+/*	border: 1px dashed blue;  */
+	width: 60%;
+	height: 100%;
+	vertical-align: top;
+}
+
+.nav {
+	padding: 0px;
+	padding: left: 0px;
+	padding: right: 0px;
+	vertical-align: top;
+	margin-top: 0px;
+}
+
+.nav li {
+	width: 80px;
+	display: inline-block;
+	text-align: center;
+	font-size: 15px;
+	padding: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+/*	margin-left: 5px; */
+	margin-right: -9px;  
+	cursor: pointer;
+	position: relative;	
+/*	background-color: gray; */
+	color: white;
+	border-radius: 0px; 
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+	background-image: url('./../img/btn.png');
+	background-size: 100% 110%;
+}
+
+
+.options {
+	cursor: pointer;
+	height: 30px;
+	width: 130px;
+}
+
+.number_input {
+	height: 25px;
+	width: 180px;
+	text-align: right;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.submit_button {
+	cursor: pointer;
+	height: 33px;
+	width: 130px;
+}
+
+.main {
+	width: 100%;
+	height: 300px;
+	margin-top: 50px;
+}
+
+.output {
+	color: white;
+	margin-left: 50px;
+}

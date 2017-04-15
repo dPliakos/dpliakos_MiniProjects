@@ -1,0 +1,47 @@
+﻿<html> 
+	<head> 
+		<title> 2d_Motion</title>
+		<link rel="stylesheet" type="text/css" href="twoDimMotionStyle.css">
+	</head>
+	
+	<body onload="draw(); cnv.setMotionType(canvasRelativeMotion);">
+	<center>
+		<p class="title"> Dragable canvas </p>
+		<table> <tr> 
+			<td>
+				<table  class="tblMatrix" >
+					<tr> 
+						<td> <input type="text" value="1" class="tdMatrix" id="td1">  </input> </td> 
+						<td> <input type="text" value="0" class="tdMatrix" id="td3">  </input> </td> 
+						<td> <input type="text" value="0" class="tdMatrix" id="td5">  </input> </td> 
+					</tr>
+					<tr> 
+						<td> <input type="text" value="0" class="tdMatrix" id="td2">  </input> </td> 
+						<td> <input type="text" value="1" class="tdMatrix" id="td4">  </input> </td> 
+						<td> <input type="text" value="0" class="tdMatrix" id="td6">  </input> </td> 
+					</tr>
+					<tr> 
+						<td> <input type="text" value="0" class="tdMatrix" disabled>  </input> </td> 
+						<td> <input type="text" value="0" class="tdMatrix" disabled>  </input> </td> 
+						<td> <input type="text" value="1" class="tdMatrix" disabled>  </input> </td> 
+					</tr>
+				</table>
+			</td>
+			<td>
+				<form name="myList" class="myForm">
+					<input type="radio" name="motionType" value="1" onclick="cnv.setMotionType(canvasRelativeMotion)" checked /> Relative Motion <br/>
+					<input type="radio" name="motionType" value="2" onclick="cnv.setMotionType(canvasAbsolteMove)" /> Absolute Motion
+				</form>
+			</td>
+		</tr> </table>
+		<input type="button" value="Transform" class="button" onclick="draw()"> 		
+			<br/>
+			<canvas id="canvas" width="900px" height="500px" > </canvas>
+			
+			<p id="coods"> x: --- - y: --- </p>
+	</center>
+		
+	</body>
+	<script type="text/javascript"  src="twoDimMotionScript.js"> </script>	
+</html>
+	

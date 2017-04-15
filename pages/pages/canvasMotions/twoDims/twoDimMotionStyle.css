@@ -1,0 +1,48 @@
+﻿body {
+/*	cursor: pointer;
+	cursor: url('myCursor.png') 4 12, pointer; */
+	background-color: lightgray;
+}
+
+.title {
+	font-size: 30px;
+	font-family: arial;
+}
+
+.backArrow {
+	width: 100px;
+	height: auto;
+}
+	
+.tblMatrix {
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+}
+	
+.tdMatrix {
+	width: 50px;
+	text-align: center;
+	background-color: lightgray;
+	border: 0px;
+}
+
+.myForm {
+	font-family: arial;
+}
+
+.MyForm  input{
+	cursor: pointer;
+}
+	
+.button {
+	cursor: pointer;
+/*	cursor: url('myCursor.png') -70 -200, pointer; */
+}
+	
+#canvas {
+	border: 1px solid black;
+	background-color: lightyellow;
+	cursor: move;
+	cursor: url('cursor.png') 22 22, move; 
+
+}

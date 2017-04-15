@@ -1,0 +1,304 @@
+﻿body {
+	background-image: url('bgimage.jpg');
+	background-size: 100% 100%;
+	font-family: Arial;	
+	color: white;
+}
+
+.bgdiv {
+	width: 100%;
+	height: 100%;
+	/*border: 2px dashed yellow; */
+	text-align: center;
+	positions: static;
+}
+
+.head {
+	font-size: 40px;
+	width: 100%;
+	background-color: grey;
+	background-image: url('head.jpg');
+/*	background-size: 100% 100%;*/
+	border-radius: 12px;
+	opacity: 1;
+	vertical-align: top;
+	position: static;
+}
+
+.myForm #num{
+	width: 40px;
+	height: 25px;
+	padding: 3px; 
+	font-size: 20px;
+	text-align: right;
+	position: static;
+	
+}
+
+#myForm {
+	font-size: 20px;
+	position: static;
+}
+
+#myForm input{
+	border: 1px solid grey;
+	border-radius: 7px;
+	width: 30px;
+	text-align: right;
+	font-size: 15px;
+ }
+
+ /*
+.okButton {
+	height: 30px;
+	width: 80px;
+	margin-top: 20px;
+}
+*/
+
+.erotisi {
+	margin-top: 2px;
+}
+
+.addButton {
+	width: 50px;
+	height: 30px;
+	border-radius: 10px;
+	margin-left: 5px;
+	box-shadow: 2px 2px 4px 2px grey;
+	cursor: pointer;
+	border: 2px solid  #A3D1FF;
+	font-size: 15px;
+}
+
+.addButton:hover {
+	box-shadow: 2px 2px 4px 2px #CCE6FF;
+}
+
+.addButton:active {
+	border: 2px solid #93BCE6;
+}
+
+.compButton {
+	height: 27px;
+	margin-top: 25px;
+	border-radius: 10px;
+	margin-left: 5px;
+	box-shadow: 2px 2px 4px 2px grey;
+	cursor: pointer;
+	border: 2px solid  #A3D1FF;
+	font-size: 15px;
+}
+
+.compButton:hover {
+	box-shadow: 2px 2px 4px 2px #CCE6FF;
+}
+
+.compButton:active {
+	border: 2px solid #93BCE6;
+}
+
+.imgInfo {
+	width: 50px;
+	height: 50px;
+	margin-left: 10px;
+	display: inline-block;
+	position: absolute;
+	z-index: 1;
+	margin-top: 13px;
+	cursor: help;
+}
+
+.divInfo {
+	width: 0px;
+	border-radius: 12px;
+	padding: 4px;
+	display: inline-block;
+	margin-top: 15px;
+	margin-left: 65px;
+	position: absolute;
+	z-index: 1;
+	text-align: left;
+
+}
+
+#output {
+/*	width: 450px;
+	height: 450px;
+	border: 1px dashed yellow; */
+	font-size: 20px;
+	position: relative;
+	z-index: 0;
+	text-align: center;
+	display: block;
+}
+
+/*
+#outp {
+	width: 400px;
+	height: 400px;
+}*/
+
+.tblLisi {
+	text-align:right;
+	font-size: 20px;
+	position: relative;
+	z-index: 0;
+	display: inline-block;
+}
+
+#grami0 td{
+	border-bottom: 2px solid white;
+	position: relative;
+	z-index: 0;
+}
+
+#telLisi {
+	display: inline-block;
+	position: relative;
+	border-radius: 25px;
+	box-shadow: 0px 0px 5px 1px #FFFFFF;
+	z-index: 0;
+	text-align: center;
+}
+
+.spanLisi {
+	vertical-align: bottom;
+	position: relative;
+	z-index: 0;
+}
+
+.tblMenu {
+	border-spacing: 10px;
+	position: absolute;
+	z-index: 4;
+/*	margin-top: -170px; */
+	width: 150px;
+	top: 60px;
+}
+
+.tdMenu {
+	text-align: center;
+	width: 70px;
+	height: 70px;
+	position: relative;
+	z-index: 4;
+	 -webkit-transition-property: width;
+	 -webkit-transition-duration: 0.3s;
+    transition-property: width, height;
+    transition-duration: 0.3s;
+	cursor: pointer;
+	vertical-align: middle;
+}
+
+.tdMenu:hover {
+	width: 90px;
+	height: 80px;
+	position: relative;
+	z-index: 4;
+}
+
+.imgMenu {
+	widht: 100%;
+	height: 100%;
+	position: relative;
+	z-index: 4;
+}
+
+.sTdMenu {
+	width: 10px;
+	height: 100%;
+	position: relative;
+	z-index: 4;
+}
+
+.imgMenuS {
+	width: 60px;
+	height: 60px;
+	position: relative;
+/*	z-index: -2; */
+/*	top: 95px;  */
+	visibility: hidden;
+	cursor: pointer;
+
+}
+
+.imgMenuS:hover {
+	box-shadow: 0px 5px 4px -2px grey;
+
+}
+
+a:link {
+	color: white;
+	text-decoration: none;
+}
+
+a:visited {
+	color: white;
+	text-decoration: none;
+}
+
+.footer {
+	bottom: 0px;
+	right: 0px;
+	display: inline-block;
+	position: absolute;
+
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

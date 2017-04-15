@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>Numerical systems</title>
+	<link rel="stylesheet" type="text/css" href="./css/style.css" />
+	<script src="./js/stylingJS.js"> </script>
+	<script src="./js/calculationsJS.js"> </script>
+</head>
+<body>
+	<div class="header">
+		<div class="title">
+			Numerical systems
+		</div>
+		<div class="menu">
+			<ul class="nav" id="navigation_options">
+				<li onclick="addShadow(this)"> To Binary </li>
+				<li onclick="addShadow(this)"> To Decimal </li>
+				<li onclick="addShadow(this)"> To Octal </li>
+				<li onclick="addShadow(this)"> To Hex </li>
+				<li onclick="addShadow(this)"> Sum </li>
+				<li onclick="addShadow(this)"> Subtraction </li>
+				<li onclick="addShadow(this)"> Multiplication </li>
+				<li onclick="addShadow(this)"> Division </li>
+			</ul>
+			<div class="menu-panel">
+			 	<select class="options" id="option_list" >
+			 		<option> From: </option>
+				 	<option> One </option>
+				 	<option> two </option>
+				 	<option> three </option>
+				 	<option> four </option>
+			 	</select>
+			 	<input type="text" class="number_input" placeholder="Write here the number"/>
+			 	<input type="button" class="submit_button" value="Calculate" onclick="calculate()"  />
+			</div>
+		</div>
+	</div>
+	<hr style="width: 80%; color: white; box-shadow: 0px 0px 2px 0px white;" />
+
+	<div class="main">
+		<div class="output" id="output">		
+		</div>
+	</div>
+
+
+</body>
+</html>
