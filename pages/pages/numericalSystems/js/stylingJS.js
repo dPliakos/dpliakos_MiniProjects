@@ -1,14 +1,27 @@
-
+var method;
 
 function init() {
-	console.log('welcome');
+	selectTab(document.getElementById("navigation_options").children[0], 1);
 }
 
 function calculate() {
 	printConversion(8, 2);
 }
 
-function selectTab(tab) {
+function selectTab(tab, num) {
+	
+	switch(num) {
+		case 1: method = toBinary;
+		break;
+		case 2: method = toOctal;
+		break;
+		case 3: method = toDecimal;
+		break;
+		case 4: method = toHex;
+		break;
+		default: method = toBinary;
+	}
+	method.addElements();	
 	addShadow(tab);
 }
 
@@ -44,37 +57,39 @@ function listOptions(select, options) {
 			list.appendChild(createlistOption(options[i].name, options[i].alias));
 }
 
-function createInput(type, className, txtToShow) {
+function createInput(type, className, txtToShow, id=null, onclick=null) {
 	if (type == "button") {
 		var btn = document.createElement("input");
 		btn.setAttribute("type", "button");
 		btn.setAttribute("class", className);
 		btn.setAttribute("value", txtToShow);
+		if (onclick != null) btn.setAttribute("onclick", onclick);
 		return btn;
 	} // else
 	var txt = document.createElement("input");
 	txt.setAttribute("type", "text");
 	txt.setAttribute("class", className);
 	txt.setAttribute("placeholder", txtToShow);
+	if (id != null) txt.setAttribute("id", id);
 	return txt;
 }
 
 function addConvertElements(possibleOrigins) {
 	var panel = document.getElementById("menu_panel");
-//	panel.setAttribute("class", "menu-panel");
 	panel.innerHTML = "";
 	var select = document.createElement("select");
 	select.setAttribute("class", "options");
+	select.setAttribute("id", "origin");
 	listOptions(select, possibleOrigins);
 	panel.appendChild(select);
-	panel.appendChild(createInput("text", "number_input", "Write the number"));
-	panel.appendChild(createInput("button", "submit_button", "Calculate"));
+	panel.appendChild(createInput("text", "number_input", "Write the number", "number_in"));
+	panel.appendChild(createInput("button", "submit_button", "Calculate", null, "printResult()"));
 }
 
-function printConversion(from=16, to=10) {
+function printResult() {
+	if (!method) return;
 	var panel = document.getElementById("output");
-	var number = "135";
-	var output = solution(from, to, number);
+	var output = method.calculate();
 	panel.innerHTML = output;
 }
 
@@ -86,15 +101,25 @@ var toBinary = {
 	fromOct: function(number) {
 		return toBinFromBase_int(number, 8, 'html');
 	},
-	fromhex: function(number) {
+	fromHex: function(number) {
 		return toBinFromBase_int(number, 16, 'html');
 	},
-	calculate: function(from, number) {
-		switch(from) {
-			case 'dec': return fromDec(number);
-			case 'oct': return fromOct(number);
-			case 'hex': return fromHex(number);
-			default console.log("__ERROR__"); 
+	takeInput: function() {
+		var input = document.getElementById("number_in");
+		return input.value;
+	},
+	checkOrigin: function() {
+		var input = document.getElementById("origin").value;
+		return input;
+	},
+	calculate: function(from) {
+		var number = this.takeInput();
+		var origin = this.checkOrigin();
+		switch(origin) {
+			case 'dec': return this.fromDec(number);
+			case 'oct': return this.fromOct(number);
+			case 'hex': return this.fromHex(number);
+			default: console.log("__ERROR__"); 
 		}
 	},
 	addElements: function() {
@@ -116,7 +141,7 @@ var toOctal = {
 			case 'dec': return fromDec(number);
 			default: console.log("__ERROR__");
 		}
-	}
+	},
 	addElements: function() {
 		addConvertElements(this.possibleOrigins);
 	}

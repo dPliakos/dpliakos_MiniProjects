@@ -43,7 +43,7 @@ function toBaseFromDec_int(number, base, as='value') { //other types: html, equa
 	}
 	result = Array.from(result).reverse().join('');
 
-	line3 = "(" + number + ")<sub>" + base + "</sub> = (" + result + ")<sub>2</sub>";
+	line3 = "(" + number + ")<sub>10</sub> = (" + result + ")<sub>" + base + "</sub>";
 
 	if  (as == 'html') return line1 + '<br/>' + line2 + '<br/>' + line3;
 	if  (as == 'equation') return line3;
