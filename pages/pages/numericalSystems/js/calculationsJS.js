@@ -1,7 +1,8 @@
 function solution(from, to, number) {
 //	return toDecimalFromBase_int(number, from, 'html');
 //	return toBaseFromDec_int(number, to, 'html');
-	return toBaseFromBin_int("1100101011010", to, 'html');
+//	return toBaseFromBin_int("1100101011010", to, 'html');
+	return toBinFromBase_int("14532", from, 'html');
 }
 
 function toDecimalFromBase_int(number, base, as='value') { //other types: html, equation
@@ -54,9 +55,7 @@ function toBaseFromBin_int(t_number, base, as='value') { //other types: html, eq
 	var line1, line2 = "", line3 = "", line4="", number = t_number;
 	// The length of the number must be divisible by the number of usable number of bits.
 	var emptyPlaces = bits - (number.length % bits);
-	if (emptyPlaces > 0)
-		for (var i=0; i<emptyPlaces; i++)
-			number = "0" + number;
+	number = Array(emptyPlaces + 1).join("0") + number;
 
 	var parts = number.lenth / bits, cursor = -1, parted_number = [];
 	for (var i=0; i<number.length; i++) 
@@ -76,8 +75,24 @@ function toBaseFromBin_int(t_number, base, as='value') { //other types: html, eq
 	return result; 
 }
 
-function toBinFromBase_int(t_number, base, as='value') {
-	var bits = (base == 8 ? 3: base == 16 ? 4 : -1 );                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+function toBinFromBase_int(number, base, as='value') {
+	var bits = (base == 8 ? 3: base == 16 ? 4 : -1 );   
+	var line1, line2 = "", line3 = "", line4="";
+	line1 = "(" + number + ")<sub>" + base + "</sub>";
+	for (var i=0; i<number.length; i++) {
+		line2 += number[i] + '&nbsp&nbsp&nbsp&nbsp ';
+		var term = Number(number[i]).toString(2);
+		var temp = Array(bits - term.length + 1).join("0") + term; // mising zeros  + number.
+		line3 += temp + '&nbsp';
+		line4 += temp;
+
+	}
+	var result = line4.substring(line4.indexOf("1"), line4.length);
+	line4 = "(" + number + ")<sub>" + base + "</sub> = (" + result + ")<sub>2</sub>";
+	
+	if (as == 'html') return line1 + "<br/><br/>" + line2 + "<br/>" + line3 + "<br/><br/>" + line4;
+	if (as == 'equation') return line4;
+	return result;
 }
 
 //numerical systems declaration.
@@ -89,16 +104,4 @@ var binary = new NumericalSystem ("Binary", "bin", 2);
 var octal = new NumericalSystem ("Octal", "oct", 8);
 var decimal = new NumericalSystem ("Decimal", "dec", 10);
 var hexademical = new NumericalSystem ("Hexademical", "hex", 16);
-
-var toBinary = {
-	possibleOrigins: ["dec", "oct", "hex"],
-	fromDec: function(number) {
-		return toBaseFromDec_int(number, 2, 'html');
-	},
-	fromOct: function(number) {
-		return toBaseFromDec_int
-	}
-
-}
-
 

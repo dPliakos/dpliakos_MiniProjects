@@ -5,7 +5,7 @@ function init() {
 }
 
 function calculate() {
-	printConversion(2, 8);
+	printConversion(8, 2);
 }
 
 function selectTab(tab) {
@@ -48,5 +48,52 @@ function printConversion(from=16, to=10) {
 	var number = "135";
 	var output = solution(from, to, number);
 	panel.innerHTML = output;
+}
+
+var toBinary = {
+	possibleOrigins: ["dec", "oct", "hex"],
+	fromDec: function(number) {
+		return toBaseFromDec_int(number, 2, 'html');
+	},
+	fromOct: function(number) {
+		return toBinFromBase_int(number, 8, 'html');
+	},
+	fromhex: function(number) {
+		return toBinFromBase_int(number, 16, 'html');
+	},
+	
+}
+
+var toOctal = {
+	possibleOrigins: ["bin", "dec"],
+	fromBin: function(number) {
+		return toBaseFromBin_int(number, 8, 'html');
+	},
+	fromDec: function(number) {
+		return toBaseFromDec_int(number, 8, 'html');
+	}
+}
+
+var toDecimal = {
+	possibleOrigins: ["bin", "oct", "hex"],
+	fromBin: function(number) {
+		return toDecimalFromBase_int(number, 2, 'html');
+	},
+	fromOct: function(number) {
+		return toDecimalFromBase_int(numner, 8, 'html');
+	},
+	fromHex: function(number) {
+		return toDecimalFromBase_int(number, 16, 'html');
+	}
+}
+
+var toHex = {
+	possibleOrigins: ["bin", "dec"],
+	fromBin: function(number) {
+		return toBaseFromBin_int(number, 16, 'html');
+	},
+	fromDec: function(number) {
+		return toBaseFromDec_int(numebr, 16, 'html');
+	}
 }
 
