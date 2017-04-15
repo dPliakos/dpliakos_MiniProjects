@@ -70,12 +70,12 @@ body {
 
 .options {
 	cursor: pointer;
-	height: 30px;
+	height: 32px;
 	width: 130px;
 }
 
 .number_input {
-	height: 25px;
+	height: 28px;
 	width: 180px;
 	text-align: right;
 	padding-left: 20px;

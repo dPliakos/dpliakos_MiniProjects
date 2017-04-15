@@ -34,13 +34,41 @@ function createlistOption(name, value=0) {
 	return option;
 }
 
-function listOptions(options) {
-	list = document.getElementById("option_list");
+function listOptions(select, options) {
+//	list = document.getElementById("option_list");
+	list = select;
 	list.innerHTML = "";
 	list.appendChild(createlistOption("From: "));
 	for (i in options)
 		if (options[i] instanceof NumericalSystem) 
-			list.appendChild(createlistOption(options[i].name, options[i].base));
+			list.appendChild(createlistOption(options[i].name, options[i].alias));
+}
+
+function createInput(type, className, txtToShow) {
+	if (type == "button") {
+		var btn = document.createElement("input");
+		btn.setAttribute("type", "button");
+		btn.setAttribute("class", className);
+		btn.setAttribute("value", txtToShow);
+		return btn;
+	} // else
+	var txt = document.createElement("input");
+	txt.setAttribute("type", "text");
+	txt.setAttribute("class", className);
+	txt.setAttribute("placeholder", txtToShow);
+	return txt;
+}
+
+function addConvertElements(possibleOrigins) {
+	var panel = document.getElementById("menu_panel");
+//	panel.setAttribute("class", "menu-panel");
+	panel.innerHTML = "";
+	var select = document.createElement("select");
+	select.setAttribute("class", "options");
+	listOptions(select, possibleOrigins);
+	panel.appendChild(select);
+	panel.appendChild(createInput("text", "number_input", "Write the number"));
+	panel.appendChild(createInput("button", "submit_button", "Calculate"));
 }
 
 function printConversion(from=16, to=10) {
@@ -51,7 +79,7 @@ function printConversion(from=16, to=10) {
 }
 
 var toBinary = {
-	possibleOrigins: ["dec", "oct", "hex"],
+	possibleOrigins: [decimal, octal, hexademical],
 	fromDec: function(number) {
 		return toBaseFromDec_int(number, 2, 'html');
 	},
@@ -61,21 +89,41 @@ var toBinary = {
 	fromhex: function(number) {
 		return toBinFromBase_int(number, 16, 'html');
 	},
-	
+	calculate: function(from, number) {
+		switch(from) {
+			case 'dec': return fromDec(number);
+			case 'oct': return fromOct(number);
+			case 'hex': return fromHex(number);
+			default console.log("__ERROR__"); 
+		}
+	},
+	addElements: function() {
+		addConvertElements(this.possibleOrigins);
+	}
 }
 
 var toOctal = {
-	possibleOrigins: ["bin", "dec"],
+	possibleOrigins: [binary, hexademical],
 	fromBin: function(number) {
 		return toBaseFromBin_int(number, 8, 'html');
 	},
 	fromDec: function(number) {
 		return toBaseFromDec_int(number, 8, 'html');
+	},
+	calculate: function(from, number) {
+		switch(from) {
+			case 'bin': return fromBin(number);
+			case 'dec': return fromDec(number);
+			default: console.log("__ERROR__");
+		}
+	}
+	addElements: function() {
+		addConvertElements(this.possibleOrigins);
 	}
 }
 
 var toDecimal = {
-	possibleOrigins: ["bin", "oct", "hex"],
+	possibleOrigins: [binary, octal, hexademical],
 	fromBin: function(number) {
 		return toDecimalFromBase_int(number, 2, 'html');
 	},
@@ -84,16 +132,37 @@ var toDecimal = {
 	},
 	fromHex: function(number) {
 		return toDecimalFromBase_int(number, 16, 'html');
+	},
+	calculate: function(from, number) {
+		switch(from) {
+			case 'bin': return fromBin(numner);
+			case 'oct': return fromOct(number);
+			case 'hex': return fromHex(number);
+			default: console.log("__ERROR__");
+		}
+	},
+	addElements: function() {
+		addConvertElements(this.possibleOrigins); 
 	}
 }
 
 var toHex = {
-	possibleOrigins: ["bin", "dec"],
+	possibleOrigins: [binary, decimal],
 	fromBin: function(number) {
 		return toBaseFromBin_int(number, 16, 'html');
 	},
 	fromDec: function(number) {
 		return toBaseFromDec_int(numebr, 16, 'html');
+	},
+	calculate: function(from, number) {
+		switch(from) {
+			case 'bin': return fromBin(number);
+			case 'dec': return fromDec(number);
+			default: console.log("__ERROR__");
+		}
+	},
+	addElements: function() {
+		addConvertElements(this.possibleOrigins);
 	}
 }
 
