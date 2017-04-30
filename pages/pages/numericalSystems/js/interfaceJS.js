@@ -1,3 +1,4 @@
+
 var method;
 
 function init() {
@@ -13,13 +14,18 @@ function selectTab(tab, num) {
 	switch(num) {
 		case 1: method = toBinary;
 		break;
-		case 2: method = toOctal;
+		case 2: method = toDecimal;
 		break;
-		case 3: method = toDecimal;
+		case 3: method = toOctal;
 		break;
 		case 4: method = toHex;
 		break;
-		default: method = toBinary;
+		case 5: method = nullMethod;
+		case 6: method = nullMethod;
+		case 7: method = nullMethod;
+		case 8: method = nullMethod;
+		break;
+		default: method = toDecimal;
 	}
 	method.addElements();	
 	addShadow(tab);
@@ -77,6 +83,10 @@ function createInput(type, className, txtToShow, id=null, onclick=null) {
 function addConvertElements(possibleOrigins) {
 	var panel = document.getElementById("menu_panel");
 	panel.innerHTML = "";
+	if (possibleOrigins == null) {
+		panel.innerHTML = "<span style='color: white'> Not supported action yet. </span>";
+		return;
+	}
 	var select = document.createElement("select");
 	select.setAttribute("class", "options");
 	select.setAttribute("id", "origin");
@@ -87,14 +97,16 @@ function addConvertElements(possibleOrigins) {
 }
 
 function printResult() {
-	if (!method) return;
 	var panel = document.getElementById("output");
-	var output = method.calculate();
+//	if (!method) return;	
+//	var output = method.calculate();
+	var output = (method != null? method.calculate() : "Not supported action yet.")
 	panel.innerHTML = output;
 }
 
 var toBinary = {
 	possibleOrigins: [decimal, octal, hexademical],
+	canCopmute: false,
 	fromDec: function(number) {
 		return toBaseFromDec_int(number, 2, 'html');
 	},
@@ -124,21 +136,41 @@ var toBinary = {
 	},
 	addElements: function() {
 		addConvertElements(this.possibleOrigins);
+	},
+	showError: function() {
+		// show error panel.
+		var panel = document.getElementById("menu_panel");
+		var error = dcument.createElement("div");
+		error.setAttribute('class', 'errorMessage visible');
+		error.innerHTML = "There is a non valid character";
+	},
+	hideError: function() {
+		// hide error panel.
 	}
 }
 
 var toOctal = {
-	possibleOrigins: [binary, hexademical],
+	possibleOrigins: [binary, decimal],
 	fromBin: function(number) {
 		return toBaseFromBin_int(number, 8, 'html');
 	},
 	fromDec: function(number) {
 		return toBaseFromDec_int(number, 8, 'html');
 	},
+	takeInput: function() {
+		var input = document.getElementById("number_in");
+		return input.value;
+	},
+	checkOrigin: function() {
+		var input = document.getElementById("origin").value;
+		return input;
+	},
 	calculate: function(from, number) {
-		switch(from) {
-			case 'bin': return fromBin(number);
-			case 'dec': return fromDec(number);
+		var number = this.takeInput();
+		var origin = this.checkOrigin();
+		switch(origin) {
+			case 'bin': return this.fromBin(number);
+			case 'dec': return this.fromDec(number);
 			default: console.log("__ERROR__");
 		}
 	},
@@ -153,16 +185,26 @@ var toDecimal = {
 		return toDecimalFromBase_int(number, 2, 'html');
 	},
 	fromOct: function(number) {
-		return toDecimalFromBase_int(numner, 8, 'html');
+		return toDecimalFromBase_int(number, 8, 'html');
 	},
 	fromHex: function(number) {
 		return toDecimalFromBase_int(number, 16, 'html');
 	},
+	takeInput: function() {
+		var input = document.getElementById("number_in");
+		return input.value;
+	},
+	checkOrigin: function() {
+		var input = document.getElementById("origin").value;
+		return input;
+	},
 	calculate: function(from, number) {
-		switch(from) {
-			case 'bin': return fromBin(numner);
-			case 'oct': return fromOct(number);
-			case 'hex': return fromHex(number);
+		var number = this.takeInput();
+		var origin = this.checkOrigin();
+		switch(origin) {
+			case 'bin': return this.fromBin(number);
+			case 'oct': return this.fromOct(number);
+			case 'hex': return this.fromHex(number);
 			default: console.log("__ERROR__");
 		}
 	},
@@ -177,12 +219,22 @@ var toHex = {
 		return toBaseFromBin_int(number, 16, 'html');
 	},
 	fromDec: function(number) {
-		return toBaseFromDec_int(numebr, 16, 'html');
+		return toBaseFromDec_int(number, 16, 'html');
+	},
+	takeInput: function() {
+		var input = document.getElementById("number_in");
+		return input.value;
+	},
+	checkOrigin: function() {
+		var input = document.getElementById("origin").value;
+		return input;
 	},
 	calculate: function(from, number) {
-		switch(from) {
-			case 'bin': return fromBin(number);
-			case 'dec': return fromDec(number);
+		var number = this.takeInput();
+		var origin = this.checkOrigin();
+		switch(origin) {
+			case 'bin': return this.fromBin(number);
+			case 'dec': return this.fromDec(number);
 			default: console.log("__ERROR__");
 		}
 	},
@@ -191,3 +243,12 @@ var toHex = {
 	}
 }
 
+var sum = {
+
+}
+
+var nullMethod = {
+	addElements: function() {
+		addConvertElements(null);
+	}
+}
