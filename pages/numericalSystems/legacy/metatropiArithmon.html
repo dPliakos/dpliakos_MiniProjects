@@ -59,7 +59,7 @@ var final, sum = 0;
 
 n = n.toUpperCase();
 
-if (deikt === 2) { 
+if (deikt === 2) {
 	for (var i = 0; i < n.length; i++) {
 		var nCheck = n[i];
 				if (nCheck != 1 && nCheck != 0) {
@@ -67,9 +67,9 @@ if (deikt === 2) {
 //			return alert("Μη έγκυρη είσοδος, ένας δυαδικός αριθμος μπορεί να πάρει μονο τις τιμές 0 και 1");
 		}
 	}
-} 
+}
 
-if (deikt === 8) { 
+if (deikt === 8) {
 	for (var i = 0; i < n.length; i++) {
 		var nCheck = n[i];
 		if (nCheck != 0 && nCheck != 1 && nCheck != 2 && nCheck != 3 && nCheck != 4 && nCheck != 5 && nCheck != 6 && nCheck != 7) {
@@ -78,7 +78,7 @@ if (deikt === 8) {
 		}
 	}
 }
-if (deikt === 10) { 
+if (deikt === 10) {
 	for (var i = 0; i < n.length; i++) {
 		var nCheck = n[i];
 		if (nCheck != 0 && nCheck != 1 && nCheck != 2 && nCheck != 3 && nCheck != 4 && nCheck != 5 && nCheck != 6 && nCheck != 7 && nCheck != 8 && nCheck != 9) {
@@ -88,7 +88,7 @@ if (deikt === 10) {
 	}
 }
 
-if (deikt === 16) { 
+if (deikt === 16) {
 	for (var i = 0; i < n.length; i++) {
 		var nCheck = n[i];
 		if (nCheck != 0 && nCheck != 1 && nCheck != 2 && nCheck != 3 && nCheck != 4 && nCheck != 5 && nCheck != 6 && nCheck != 7 && nCheck != 8 && nCheck != 9 && nCheck !== "A" && nCheck !== "B" && nCheck !== "C" && nCheck !== "D" && nCheck !== "E" && nCheck !== "F") {
@@ -124,13 +124,13 @@ document.getElementById("outputTxt").innerHTML+=(" = </br>");
 
 for (var hexN=0;hexN<dNumber.length;hexN++) {
 
-	
+
 	switch (dNumber[hexN])
 	{
 
 	case "A" : dNumber[hexN] = 10;
 	break;
-	
+
 	case "B" : dNumber[hexN] = 11;
 	break;
 
@@ -142,7 +142,7 @@ for (var hexN=0;hexN<dNumber.length;hexN++) {
 
 	case "E" : dNumber[hexN] = 14;
 	break;
-	
+
 	case "F": dNumber[hexN] = 15;
 	break;
 
@@ -156,7 +156,7 @@ for (var hexN=0;hexN<dNumber.length;hexN++) {
 for (var e=0;e<(n.length );e++) {
 	document.getElementById("outputTxt").innerHTML+=(dNumber[e]);
 	document.getElementById("outputTxt").innerHTML+=('*' + Math.pow(deikt,supNumber[e]) + ' + ')
-	
+
 }
 document.getElementById("outputTxt").innerHTML+=(" = </br>");
 
@@ -202,7 +202,7 @@ num = num.toUpperCase();
 var fin = [];
 
 var typeCheck = function() {
-if (numbType === "--") { alert("Επιλέξτε πρώτα τον τύπο του αριθμού"); startType = false; } else { startType = true ; } 
+if (numbType === "--") { alert("Επιλέξτε πρώτα τον τύπο του αριθμού"); startType = false; } else { startType = true ; }
 }
 
 typeCheck();
@@ -210,7 +210,7 @@ typeCheck();
 
 
 
-if (numbType === "8") { 
+if (numbType === "8") {
 	for (var i = 0; i < num.length; i++) {
 		var nCheck = num[i];
 		if (nCheck != 0 && nCheck != 1 && nCheck != 2 && nCheck != 3 && nCheck != 4 && nCheck != 5 && nCheck != 6 && nCheck != 7) {
@@ -219,7 +219,7 @@ if (numbType === "8") {
 		}
 	}
 }
-if (numbType === "10") { 
+if (numbType === "10") {
 	for (var i = 0; i < num.length; i++) {
 		var nCheck = num[i];
 		if (nCheck != 0 && nCheck != 1 && nCheck != 2 && nCheck != 3 && nCheck != 4 && nCheck != 5 && nCheck != 6 && nCheck != 7 && nCheck != 8 && nCheck != 9) {
@@ -229,7 +229,7 @@ if (numbType === "10") {
 	}
 }
 
-if (numbType === "16") { 
+if (numbType === "16") {
 	for (var i = 0; i < num.length; i++) {
 		var nCheck = num[i];
 		if (nCheck != 0 && nCheck != 1 && nCheck != 2 && nCheck != 3 && nCheck != 4 && nCheck != 5 && nCheck != 6 && nCheck != 7 && nCheck != 8 && nCheck != 9 && nCheck !== "A" && nCheck !== "B" && nCheck !== "C" && nCheck !== "D" && nCheck !== "E" && nCheck !== "F") {
@@ -251,7 +251,7 @@ document.getElementById("outputTxt").innerHTML= (" ");
 
 for (var i=0; i<num.length; i++) { digits.push(num[i]);}
 
-for (var i=0; i<num.length; i++) { 
+for (var i=0; i<num.length; i++) {
 	fin.push(binaryNum [digits[i]]);
 	document.getElementById("outputTxt").innerHTML+=(digits[i] + " = " + binaryNum [digits[i]] + "<br>");
 
@@ -309,29 +309,29 @@ for (var i=0; i<num.length; i++) { digits.push(num[i]); digits2.push(num[i]);}
 
 for (var i=0; i<digits.length; i++) {
 	var numConv = digits[i];
-	
+
 	switch (numConv) {
-	case "A": digits[i] = "10"; 
+	case "A": digits[i] = "10";
 	break;
-	case "B": digits[i] = "11"; 
+	case "B": digits[i] = "11";
 	break;
-	case "C": digits[i] = "12"; 
+	case "C": digits[i] = "12";
 	break;
-	case "D": digits[i] = "13"; 
+	case "D": digits[i] = "13";
 	break;
-	case "E": digits[i] = "14"; 
+	case "E": digits[i] = "14";
 	break;
-	case "F": digits[i] = "15"; 
+	case "F": digits[i] = "15";
 	break;
 	default:  ;
 	break;
 
-	
+
 }}
 
 document.getElementById("outputTxt").innerHTML= ("");
 
-for (var i=0; i<num.length; i++) { 
+for (var i=0; i<num.length; i++) {
 	fin.push(binaryNum [digits[i]]);
 	document.getElementById("outputTxt").innerHTML+=(digits2[i] + " = " + binaryNum [digits[i]] + "<br>");
 }
@@ -350,7 +350,7 @@ if (startType && numbType === "16") { hexTobin(); }
 }
 </script>
 
-<script>  
+<script>
 
 var mthd3Execute = function() {
 /* console.log("Progress Check - function exe startd with the button"); */
@@ -363,7 +363,7 @@ var final2 =[];
 
 
 
-if (fnu != "") { 
+if (fnu != "") {
 	for (var i = 0; i < fnu.length; i++) {
 		var nCheck = fnu[i];
 				if (nCheck != 1 && nCheck != 0) {
@@ -371,9 +371,9 @@ if (fnu != "") {
 			return alert("Wrong input, a binary nnumber can take only values from 0 to 1");
 		}
 	}
-} 
+}
 
-if (snu != "") { 
+if (snu != "") {
 	for (var i = 0; i < snu.length; i++) {
 		var nCheck = snu[i];
 				if (nCheck != 1 && nCheck != 0) {
@@ -408,12 +408,12 @@ for (var a = nuToDig.length-1; a >= 0; a--)  {
 	var exam = nuToDig[a];
 
 /*	console.log("fast check - Start - exam: " + exam + ", At point: " + (a + 1) );*/
-	
+
 	switch(exam) {
 
 	case "0" : final[a + 1] += 0;
 	break;
-	
+
 	case "1" : final[a + 1] += 1; /* if (final[a + 1] === 2) { console.log (" 2 should appear at " + (a + 1)); final[a + 1] = 0; final[a] = 1;  } */
 	break;
 
@@ -435,7 +435,7 @@ for (var a = nuToDig.length-1; a >= 0; a--)  {
 
 
 for (var dio = final.length; dio >= 0; dio--) {
-	
+
 	if (final[dio] === 2) {
 		final[dio] = 0; final[dio-1] += 1;
 	} else if (final[dio] === 3) {
@@ -466,7 +466,7 @@ document.getElementById("outputTxt").innerHTML+=("</td></tr></table>");
 document.getElementById("outputTxt").innerHTML+=("<br><br>");
 document.getElementById("outputTxt").innerHTML+=("(" + fnu + ")<sub>2</sub> + (" + snu + ")<sub>2</sub> = (" + final3 + ")<sub>2</sub>");
 
-} 
+}
 
 
 </script>
@@ -490,7 +490,7 @@ var clearOutput = function() {
 <body> <div class="first" align="center"> <div class="main" align="left">
 
 <center> <div class="genTitleBack">
-	<a href="../../index.html"><img src="img/backArrow.png" style="width: 80px; height: auto; vertical-align: middle;"/></a>
+	<a href="../index.html"><img src="img/backArrow.png" style="width: 80px; height: auto; vertical-align: middle;"/></a>
 	Μετατροπή Αριθμών
 </div> </center>
 
@@ -591,11 +591,11 @@ document.getElementById("btnInput6").style.backgroundColor = "transparent"; docu
 document.getElementById("btnInput7").style.backgroundColor = "transparent"; document.getElementById("btnInput7").style.color = "white";
 }
 
-var txtClrWhite = function() { 
+var txtClrWhite = function() {
 document.getElementById("txtInput1").style.backgroundColor = "white"; document.getElementById("txtInput1").style.color = "black";
-document.getElementById("txtInput2").style.backgroundColor = "white"; document.getElementById("txtInput2").style.color = "black"; 
-document.getElementById("txtInput3").style.backgroundColor = "white"; document.getElementById("txtInput3").style.color = "black"; 
-document.getElementById("txtInput4").style.backgroundColor = "white"; document.getElementById("txtInput4").style.color = "black"; 
+document.getElementById("txtInput2").style.backgroundColor = "white"; document.getElementById("txtInput2").style.color = "black";
+document.getElementById("txtInput3").style.backgroundColor = "white"; document.getElementById("txtInput3").style.color = "black";
+document.getElementById("txtInput4").style.backgroundColor = "white"; document.getElementById("txtInput4").style.color = "black";
 document.getElementById("btnInput1").style.backgroundColor = "white"; document.getElementById("btnInput1").style.color = "black";
 document.getElementById("btnInput2").style.backgroundColor = "white"; document.getElementById("btnInput2").style.color = "black";
 document.getElementById("btnInput3").style.backgroundColor = "white"; document.getElementById("btnInput3").style.color = "black";
@@ -607,7 +607,7 @@ document.getElementById("btnInput7").style.backgroundColor = "white"; document.g
 
 var txtSize = function() {
 document.getElementById("outputTxt").style.fontSize = document.frmTxtSize.txtSize.value + "px";
-if (document.getElementById("outputTxt").innerHTML != "") { 
+if (document.getElementById("outputTxt").innerHTML != "") {
 }else { document.getElementById("outputTxt").innerHTML="Sample Text";}
 }
 
@@ -624,41 +624,21 @@ var InfoOn = function() {
 
 <table border="0" class="tblMenu">
 <tr> <td width="500px"><p style="color: white; font-size: 25px; font-family: Arial;">Dimitris Pl <br>  </p></td>
-<td align="right" height="70px"> 
+<td align="right" height="70px">
 <div class="divMenu" id="divMenu" align="center" valign="middle">
 
-<table width="90%" height="90%" border="0px" class="tblMenu2"><tr> 
-<td class="tdTxtColor"> <img src="img/txtColor.jpg" class="imgTxtColor"><br> <div class="txtColorPicker" id="txtClrWhite" onclick="txtClrWhite()"></div><div class="txtColorPicker" id="TxtClrBlack" onclick="txtClrBlack()"></div></td> 
-<td class="tdTxtColor"> <img Src="img/txtSize.jpg"  class="imgTxtColor" ><br> <form name="frmTxtSize"><select name="txtSize"> <option value="16" onclick="txtSize()">normal</option><option value="19" onclick="txtSize()">19</option><option value="22" onclick="txtSize()">22</option></select></form></td> 
+<table width="90%" height="90%" border="0px" class="tblMenu2"><tr>
+<td class="tdTxtColor"> <img src="img/txtColor.jpg" class="imgTxtColor"><br> <div class="txtColorPicker" id="txtClrWhite" onclick="txtClrWhite()"></div><div class="txtColorPicker" id="TxtClrBlack" onclick="txtClrBlack()"></div></td>
+<td class="tdTxtColor"> <img Src="img/txtSize.jpg"  class="imgTxtColor" ><br> <form name="frmTxtSize"><select name="txtSize"> <option value="16" onclick="txtSize()">normal</option><option value="19" onclick="txtSize()">19</option><option value="22" onclick="txtSize()">22</option></select></form></td>
 </tr></table>
 </div>
 </td>
 
 <td style="width: 70px;">
-<img src="img/menu.png" class="imgMenu" onclick="lolo()"> 
+<img src="img/menu.png" class="imgMenu" onclick="lolo()">
 </td></tr>
 </table>
 
 
 </div> </div> </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
