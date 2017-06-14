@@ -10,7 +10,7 @@ function calculate() {
 }
 
 function selectTab(tab, num) {
-	
+
 	switch(num) {
 		case 1: method = toBinary;
 		break;
@@ -20,14 +20,15 @@ function selectTab(tab, num) {
 		break;
 		case 4: method = toHex;
 		break;
-		case 5: method = nullMethod;
+		case 5: method = sum;
+		break;
 		case 6: method = nullMethod;
 		case 7: method = nullMethod;
 		case 8: method = nullMethod;
 		break;
 		default: method = toDecimal;
 	}
-	method.addElements();	
+	method.addElements();
 	addShadow(tab);
 }
 
@@ -54,12 +55,11 @@ function createlistOption(name, value=0) {
 }
 
 function listOptions(select, options) {
-//	list = document.getElementById("option_list");
 	list = select;
 	list.innerHTML = "";
 	list.appendChild(createlistOption("From: "));
 	for (i in options)
-		if (options[i] instanceof NumericalSystem) 
+		if (options[i] instanceof NumericalSystem)
 			list.appendChild(createlistOption(options[i].name, options[i].alias));
 }
 
@@ -96,14 +96,37 @@ function addConvertElements(possibleOrigins) {
 	panel.appendChild(createInput("button", "submit_button", "Calculate", null, "printResult()"));
 }
 
+function addOperationElements(possibleOrigins) {
+	var panel = document.getElementById("menu_panel");
+	panel.innerHTML = "";
+	if (possibleOrigins == null) {
+		panel.innerHTML = "<span style='color: white'> Not supported action yet. </span>";
+		return;
+	}
+	var select = document.createElement("select");
+	select.setAttribute("class", "options");
+	select.setAttribute("id", "origin");
+	listOptions(select, possibleOrigins);
+	panel.appendChild(select);
+	panel.appendChild(createInput("text", "number_input", "The first number", "f_number"));
+	panel.appendChild(createInput("text", "number_input", "The second number", "s_number"));
+	panel.appendChild(createInput("button", "submit_button", "Calculate", null, "appendResult()"));
+}
+
 function printResult() {
 	var panel = document.getElementById("output");
-//	if (!method) return;	
-//	var output = method.calculate();
 	var output = (method != null? method.calculate() : "Not supported action yet.")
 	panel.innerHTML = output;
 }
 
+function appendResult() {
+	var panel = document.getElementById("output");
+	var output = (method != null? method.calculate() : "Not supported action yet.");
+	panel.innerHTML = "";
+	panel.appendChild(output);
+}
+
+// possibleOrigins are described at calculationsJS.js
 var toBinary = {
 	possibleOrigins: [decimal, octal, hexademical],
 	canCopmute: false,
@@ -131,7 +154,7 @@ var toBinary = {
 			case 'dec': return this.fromDec(number);
 			case 'oct': return this.fromOct(number);
 			case 'hex': return this.fromHex(number);
-			default: console.log("__ERROR__"); 
+			default: console.log("__ERROR__");
 		}
 	},
 	addElements: function() {
@@ -209,7 +232,7 @@ var toDecimal = {
 		}
 	},
 	addElements: function() {
-		addConvertElements(this.possibleOrigins); 
+		addConvertElements(this.possibleOrigins);
 	}
 }
 
@@ -244,7 +267,42 @@ var toHex = {
 }
 
 var sum = {
-
+	possibleOrigins: [binary, octal, decimal, hexademical],
+	bin: function(num1, num2) {
+		return sumAnyBase(num1, num2, 2, 'html');
+	},
+	oct: function(num1, num2) {
+		return sumAnyBase(num1, num2, 10, 'html');
+	},
+	dec: function(num1, num2) {
+		return sumAnyBase(num1, num2, 8, 'html');
+	},
+	hex: function(num1, num2) {
+		return sumAnyBase(num1, num2, 16, 'html');
+	},
+	calculate: function(from) {
+		var numbers = this.takeInput();
+		var origin = this.checkOrigin();
+		switch(origin) {
+			case 'bin': return this.bin(numbers[0], numbers[1]);
+			case 'dec': return this.oct(numbers[0], numbers[1]);
+			case 'oct': return this.dec(numbers[0], numbers[1]);
+			case 'hex': return this.hex(numbers[0], numbers[1]);
+			default: console.log("__ERROR__");
+		}
+	},
+	addElements: function() {
+		addOperationElements(this.possibleOrigins);
+	},
+	checkOrigin: function() {
+		var input = document.getElementById("origin").value;
+		return input;
+	},
+	takeInput: function() {
+		var input1 = document.getElementById("f_number");
+		var input2 = document.getElementById("s_number");
+		return [input1.value, input2.value];
+	}
 }
 
 var nullMethod = {

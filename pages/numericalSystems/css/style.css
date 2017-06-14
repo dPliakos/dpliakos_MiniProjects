@@ -115,3 +115,12 @@ body {
 	width: 100px;
 	height: 50px;
 }
+
+.underline {
+	text-decoration: underline;
+}
+
+.operatonContainer {
+	text-align: right;
+	display: inline-block;
+}

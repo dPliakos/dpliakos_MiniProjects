@@ -98,6 +98,47 @@ function toBinFromBase_int(number, base, as='value') {
 	return result;
 }
 
+// operations
+function sumAnyBase(num1, num2, base, as='value') { // other types: html
+	var line1 = num1;
+	var line2 = num2;
+	var line3;
+	if (base == 2) {
+		line3 = Number("0b" + num1) + Number("0b" + num2);
+	} else if (base == 8) {
+		line3 = Number("0o" + num1) + Number("0o" + num2);
+	}	else	if (base == 10) {
+		line3 = Number(num1) + Number(num2);
+	} else if (base == 16) {
+		line3 = Number("0x" + num1) + Number("0x" + num2);
+	}
+	line3 = line3.toString(base).toUpperCase();
+	if (as == 'value') return line3;
+
+	var lines = [line1, line2, line3];
+	var div = document.createElement("div");
+
+	for (var i=0; i<lines.length; i++) {
+		var span = document.createElement("span");
+		var txt = document.createTextNode(lines[i]);
+		if (i == 1) {
+			var len = line1.length - line2.length;
+			temp = "";
+			temp += '+';
+			for (var j = 0; j <len+2; j++) temp += '\xa0';
+			txt = temp + txt.textContent;
+			txt = document.createTextNode(txt);
+			span.setAttribute("class", "underline");
+		}
+		span.appendChild(txt);
+		div.appendChild(span);
+		var br = document.createElement("br");
+		div.appendChild(br);
+		div.setAttribute("class", "operatonContainer");
+	}
+	return div;
+}
+
 //numerical systems declaration.
 function NumericalSystem(name, alias, base) {
 	this.name = name; this.alias = alias; this.base = base;
