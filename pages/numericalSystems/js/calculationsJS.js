@@ -1,3 +1,4 @@
+// @license magnet:?xt=urn:btih:5305d91886084f776adcf57509a648432709a7c7&dn=x11.txt
 function solution(from, to, number) {
 //	return toDecimalFromBase_int(number, from, 'html');
 //	return toBaseFromDec_int(number, to, 'html');
@@ -175,3 +176,4 @@ var binary = new NumericalSystem ("Binary", "bin", 2);
 var octal = new NumericalSystem ("Octal", "oct", 8);
 var decimal = new NumericalSystem ("Decimal", "dec", 10);
 var hexademical = new NumericalSystem ("Hexademical", "hex", 16);
+// @license-end

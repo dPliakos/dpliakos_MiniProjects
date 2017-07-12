@@ -1,6 +1,7 @@
+// @license magnet:?xt=urn:btih:5305d91886084f776adcf57509a648432709a7c7&dn=x11.txt
 ﻿var axes = {
 	x0: 0,
-	y0: 0	
+	y0: 0
 }
 
 var point = {
@@ -11,7 +12,7 @@ var point = {
 function main() {
 	var canvas = document.getElementById("canvas");
 	if (canvas.getContext) {
-		var ctx = canvas.getContext('2d');			
+		var ctx = canvas.getContext('2d');
 	}
 	drawAxes();
 	drawX();
@@ -22,7 +23,7 @@ function drawAPoint(type) {
 	point.y = document.getElementById("pointY").value;
 	if (type== 1) drawPoint(point.x, point.y);
 	else drawDashedPoint(point.x, point.y);
-		
+
 }
 
 function drawPoint(x, y) {
@@ -30,7 +31,7 @@ function drawPoint(x, y) {
 	if (canvas.getContext) {
 		var ctx = canvas.getContext('2d');
 		ctx.save();
-		ctx.translate(axes.x, axes.y);	
+		ctx.translate(axes.x, axes.y);
 		ctx.scale(1, -1);
 		ctx.beginPath();
 		ctx.moveTo(x, y);
@@ -39,7 +40,7 @@ function drawPoint(x, y) {
 		ctx.restore();
 		main();
 //		ctx.arc(0, 0, radius, 0 , 2*Math.PI)
-		
+
 	}
 }
 
@@ -48,13 +49,13 @@ function drawDashedPoint(x, y) {
 	if (canvas.getContext) {
 		var ctx = canvas.getContext('2d');
 		ctx.save();
-		ctx.translate(axes.x, axes.y);	
+		ctx.translate(axes.x, axes.y);
 		ctx.scale(1, -1);
 		ctx.beginPath();
 		ctx.save();
 		ctx.setLineDash([15, 15]);
 		ctx.moveTo(axes.x0, y);
-		ctx.lineTo(x, y);		
+		ctx.lineTo(x, y);
 		ctx.moveTo(x, axes.y0);
 		ctx.lineTo(x, y);
 		ctx.stroke();
@@ -63,7 +64,7 @@ function drawDashedPoint(x, y) {
 		ctx.arc (x, y, 2, 0, 2*Math.PI);
 		ctx.stroke();
 		ctx.restore();
-		main();		
+		main();
 	}
 }
 
@@ -84,8 +85,8 @@ function drawAxes() {
 	var userX = document.getElementById("inX").value;
 	var userY = document.getElementById("inY").value;
 	axes.x = userX;
-	axes.y = userY;	
-	
+	axes.y = userY;
+
 	var canvas = document.getElementById("canvas");
 	if (canvas.getContext) {
 		var ctx = canvas.getContext('2d');
@@ -101,23 +102,4 @@ function drawAxes() {
 	}
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// @license-end

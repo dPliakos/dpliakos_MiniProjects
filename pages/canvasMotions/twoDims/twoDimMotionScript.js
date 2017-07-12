@@ -1,3 +1,4 @@
+// @license magnet:?xt=urn:btih:5305d91886084f776adcf57509a648432709a7c7&dn=x11.txt
 ﻿var cnv = {
 	canMove: false,
 	motionType: canvasRelativeMotion,
@@ -9,7 +10,7 @@ var mouse =  {
 	lastY: 0,
 	getCursorX(canvas, e) { return e.clientX - canvas.offsetTop + 31; },
 	getCursorY(canvas, e) { return e.clientY - canvas.offsetLeft - 31; },
-	getLastClick(e) { 
+	getLastClick(e) {
 		var canvas = document.getElementById("canvas");
 		this.lastX = this.getCursorX(canvas, e);
 		this.lastY = this.getCursorY(canvas, e);
@@ -21,7 +22,7 @@ var grid = {
 		posX: 0,
 		posY: 0,
 		width: 200,
-		height: 200	
+		height: 200
 }
 
 var axes = {
@@ -44,21 +45,21 @@ function makeGrid(posX, posY, width, height, canvas, context) {
 		context.strokeStyle = "red";
 		for (var x=0; x <= width; x+=10) {
 				context.moveTo(x, 0);
-				context.lineTo(x, height);	
-		}	
-		for (var y=0; y <= height; y+=10) {	
+				context.lineTo(x, height);
+		}
+		for (var y=0; y <= height; y+=10) {
 			context.moveTo(0, y);
 			context.lineTo(width, y);
-		}	
-		context.closePath();		
+		}
+		context.closePath();
 		context.stroke();
 		context.restore();
 	}
 }
 
-function makeAxes(canvas, oX, oY) {	
-	if (canvas.getContext) {		
-		var ctx = canvas.getContext('2d');	
+function makeAxes(canvas, oX, oY) {
+	if (canvas.getContext) {
+		var ctx = canvas.getContext('2d');
 		ctx.save();
 //		oY = oY * (-1);
 		ctx.strokeStyle = "#000000";
@@ -76,13 +77,13 @@ function makeAxes(canvas, oX, oY) {
 
 function backgroundGrid(canvas) {
 	width = canvas.width;
-	height = canvas.height;	
-	if (canvas.getContext) {		
+	height = canvas.height;
+	if (canvas.getContext) {
 		var ctx = canvas.getContext('2d');
 		ctx.save();
 		ctx.beginPath();
 		ctx.globalsAlpha= 0.1;
-		ctx.strokeStyle = "lightBlue";		
+		ctx.strokeStyle = "lightBlue";
 		for (var x=0; x <= width; x+=10) {
 			ctx.moveTo(x, 0);
 			ctx.lineTo(x, height);
@@ -94,7 +95,7 @@ function backgroundGrid(canvas) {
 		ctx.closePath();
 		ctx.stroke();
 		ctx.restore();
-	}	
+	}
 }
 
 
@@ -103,24 +104,24 @@ function draw() {
 	var x0 = axes.x0;
 	var y0 = axes.y0;
 	var gridPosX = grid.posX;
-	var gridPosY = grid.posY;	
+	var gridPosY = grid.posY;
 	var gridWidth = grid.width;
 	var gridHeight= grid.height;
-	
-	
-	var canvas = document.getElementById("canvas");	
+
+
+	var canvas = document.getElementById("canvas");
 	if (canvas.getContext) {
 		backgroundGrid(canvas);
 		makeAxes(canvas, x0, y0);
-		
+
 		var ctx = canvas.getContext('2d');
 		ctx.beginPath();
 		ctx.save();
 		ctx.translate(x0, y0);
-		ctx.scale(1, -1);		
+		ctx.scale(1, -1);
 		if (grid.exists == false) {
 			makeGrid(gridPosX, gridPosY, gridWidth, gridHeight, canvas);
-			grid.exists = true;			
+			grid.exists = true;
 		}
 		ctx.restore();
 	}
@@ -148,7 +149,7 @@ function clearCanvas() {
 		ctx = canvas.getContext('2d');
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		grid.exists = false;
-	}	
+	}
 }
 
 function canvasAbsolteMove(e) {
@@ -161,9 +162,9 @@ function canvasAbsolteMove(e) {
 		var y = mouse.getCursorY(canvas, e) + 24;
 		b.innerHTML  = ("X: " + x + "<br/>");
 		b.innerHTML += ("Y: " + y);
-	
+
 		changeAxes(x, y);
-		draw();		
+		draw();
 	}
 }
 
@@ -171,12 +172,12 @@ function canvasRelativeMotion(e) {
 	if (cnv.canMove) {
 		var canvas = document.getElementById("canvas");
 		var coods = document.getElementById("coods");
-		
+
 		var newX =  ((mouse.getCursorX(canvas, e) - mouse.lastX)) + axes.x0 ;
 		var newY =  ((mouse.getCursorY(canvas, e) - mouse.lastY)) + axes.y0 ;
-		
+
 		coods.innerHTML = "x: " + newX + " - y: " + newY;
-		draw();		
+		draw();
 		changeAxes(newX, newY);
 		mouse.getLastClick(e);
 	}
@@ -190,14 +191,14 @@ function canvasReverseRelativeMotion(e) {
 		var newX =  -((mouse.getCursorX(canvas, e) - mouse.lastX)) + axes.x0;
 		var newY =  -((mouse.getCursorY(canvas, e) - mouse.lastY)) + axes.y0;
 		coods.innerHTML = "x: " + newX + " - y: " + newY;
-		draw();		
+		draw();
 		changeAxes(newX, newY);
 		mouse.getLastClick(e);
-		
+
 	}
 }
 
-function stopMoving (){ cnv.canMove = false;}  
+function stopMoving (){ cnv.canMove = false;}
 function startMoving(){ cnv.canMove = true; }
 
 document.getElementById("canvas").addEventListener("mousedown", function(e){ startMoving(e)});
@@ -205,5 +206,4 @@ document.getElementById("canvas").addEventListener("mousedown", function(e){ mou
 document.getElementById("canvas").addEventListener("mousemove", function(e){ cnv.motionType(e) });
 document.getElementById("canvas").addEventListener("mouseup", stopMoving);
 document.getElementById("canvas").addEventListener("mouseout", stopMoving);
-
-
+// @license-end
